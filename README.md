@@ -1,18 +1,22 @@
-## Getting Started
+###Encapsulation
+#sisi, radius, sama tinggi dibuat  private, dikarenakan di dalam diagram tandanya -. Jadi tidak bisa diubah langsung dari luar kelas, harus lewat getter dan setter (getSisi(), setSisi(), dst).
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+#Di setiap setter diberikan pengecekan. JIka nilainya 0 atau negatif, nilainya nggak dipakai dan muncul tulisan "Ditolak: ... harus positif". Constructor juga manggil setter, jadi dari awal objek dibuat pun nilainya tetap dicek.
 
-## Folder Structure
+#PHI di Lingkarann dibuat private static final karena di soal disuruh jadiin konstanta kelas.Sedangkan warna di Bentuk dibuat public, dikarenakan di dalam diagram soal tandanya +.
 
-The workspace contains two folders by default, where:
+###Inheritance
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+#BujurSangkar dan Lingkaran menggunakan extends Bentuk. Silinder menggunakan extends Lingkaran, jadi turunannya bertingkat.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+#Warna, getWarna(), dan setWarna() diwarisin dari Bentuk, jadi nggak perlu ditulis lagi di kelas anak.
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+#Constructor tidak ikut diwariskan, jadi tiap kelas anak manggil constructor induknya pakai super(...) di baris pertama. Contohnya super(warna) di Lingkaran dan super(radius, warna) di Silinder.
 
-## Dependency Management
+#Radius itu private di Lingkaran, jadi Silinder nggak bisa akses langsung. Sebagai gantinya, Silinder ngisi radius lewat super(...), dan hitung volume pakai hitungLuas() punya Lingkaran dikali tinggi.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+###Polymorphism
+
+#Method printInfo() ditulis ulang menggunakan @Override di tiap kelas anak, jadi tiap kelas nampilin tulisan yang beda.
+
+#Di Main.java dibuat array Bentuk[] yang isinya objek Bentuk, BujurSangkar, Lingkaran, dan Silinder. Pas di-loop dan manggil printInfo(), yang jalan itu printInfo() sesuai jenis objeknya, bukan sesuai tipe variabelnya.
